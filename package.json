@@ -1,0 +1,103 @@
+{
+  "name": "@lz-kit/contracts",
+  "description": "LayerZero Kit Contracts",
+  "keywords": [
+    "lz-kit",
+    "contracts"
+  ],
+  "homepage": "https://github.com/lz-kit/contracts#readme",
+  "bugs": "https://github.com/lz-kit/contracts/issues",
+  "license": "MIT",
+  "author": "LevX <team@levx.io>",
+  "files": [
+    "abis",
+    "contracts",
+    "docs",
+    "typechain-types"
+  ],
+  "scripts": {
+    "prepare": "husky install && shx chmod +x .husky/pre-commit",
+    "dev": "hardhat watch compile",
+    "build": "hardhat compile",
+    "console": "hardhat console",
+    "lz:bootstrap": "lz-kit bootstrap --balance 10000 --accounts 3 ethereum arbitrum",
+    "lz:deploy": "lz-kit deploy --networks ethereum-fork arbitrum-fork --config OmniVotingEscrow",
+    "lz:test": "lz-kit test --networks ethereum-fork arbitrum-fork",
+    "hardhat:deploy": "hardhat deploy",
+    "ethereum:deploy": "hardhat --network ethereum deploy",
+    "ethereum:export": "hardhat --network ethereum export",
+    "goerli:deploy": "hardhat --network goerli deploy",
+    "goerli:export": "hardhat --network goerli export --export exports/goerli.json",
+    "arbitrum:deploy": "hardhat --network arbitrum deploy",
+    "arbitrum:export": "hardhat --network arbitrum export --export exports/arbitrum.json",
+    "arbitrum-goerli:deploy": "hardhat --network arbitrum-goerli deploy",
+    "arbitrum-goerli:export": "hardhat --network arbitrum-goerli export --export exports/arbitrum-goerli.json",
+    "test": "cross-env TS_NODE_TRANSPILE_ONLY=1 hardhat test",
+    "test:trace": "cross-env TS_NODE_TRANSPILE_ONLY=1 hardhat test --trace",
+    "test:coverage": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" hardhat coverage",
+    "test:gas": "cross-env REPORT_GAS=true yarn test",
+    "prepublishOnly": "rimraf abis artifacts cache coverage docs typechain-types && yarn build"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ],
+    "*.sol": [
+      "solhint -c .solhint.json",
+      "prettier --write"
+    ],
+    "*.md": "prettier --write"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "@ethersproject/abi": "^5.7.0",
+    "@ethersproject/providers": "^5.7.2",
+    "@lz-kit/cli": "^0.5.1",
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-etherscan": "^3.1.7",
+    "@nomiclabs/hardhat-solhint": "^3.0.1",
+    "@primitivefi/hardhat-dodoc": "^0.2.3",
+    "@typechain/ethers-v5": "^10.2.1",
+    "@typechain/hardhat": "^6.1.6",
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.11.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.5",
+    "@typescript-eslint/parser": "^5.59.5",
+    "chai": "^4.3.7",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
+    "env-cmd": "^10.1.0",
+    "eslint": "^8.40.0",
+    "ethereum-waffle": "^4.0.10",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.14.0",
+    "hardhat-abi-exporter": "^2.10.1",
+    "hardhat-deploy": "^0.11.28",
+    "hardhat-deploy-ethers": "^0.3.0-beta.13",
+    "hardhat-gas-reporter": "^1.0.9",
+    "hardhat-log-remover": "^2.0.2",
+    "hardhat-preprocessor": "^0.1.5",
+    "hardhat-spdx-license-identifier": "^2.1.0",
+    "hardhat-watcher": "^2.5.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "prettier-plugin-solidity": "^1.1.3",
+    "shx": "^0.3.4",
+    "solidity-coverage": "^0.8.2",
+    "ts-generator": "^0.1.1",
+    "ts-node": "^10.9.1",
+    "typechain": "^8.1.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@layerzerolabs/solidity-examples": "^0.0.10",
+    "@openzeppelin/contracts": "^4.8.3"
+  }
+}

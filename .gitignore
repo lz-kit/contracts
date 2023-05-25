@@ -1,0 +1,36 @@
+# Node
+node_modules/
+
+# Yarn
+yarn-error.log
+
+# Hardhat
+.logs
+cache/
+cache-zk/
+abis/
+artifacts/
+artifacts-zk/
+deployments/localhost
+deployments/*-fork
+hardhat-configs/
+
+# Typechain
+typechain-types/
+
+# Env
+.env
+
+# Coverage
+coverage/
+coverage.json
+
+# Intellij
+.idea
+build/
+
+# ESLint
+.eslintcache
+
+# Dodoc
+docs/**/*
