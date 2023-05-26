@@ -70,7 +70,7 @@ contract VotingEscrow is Ownable, ReentrancyGuard, IVotingEscrow {
 
     string public name;
     string public symbol;
-    uint8 public immutable decimals;
+    uint8 public decimals;
 
     mapping(address => bool) public isWhitelistedContract;
 
@@ -78,7 +78,11 @@ contract VotingEscrow is Ownable, ReentrancyGuard, IVotingEscrow {
         token = _token;
         name = _name;
         symbol = _symbol;
-        decimals = IERC20Metadata(_token).decimals();
+        try IERC20Metadata(_token).decimals() returns (uint8 _decimals) {
+            decimals = _decimals;
+        } catch {
+            decimals = 18;
+        }
 
         pointHistory[0].blk = block.number;
         pointHistory[0].ts = block.timestamp;
